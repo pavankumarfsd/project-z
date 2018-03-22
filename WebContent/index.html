@@ -1,0 +1,47 @@
+<html ng-app="app">
+	<head>
+		<title>Show Actors</title>
+		<link href="include/styles.css" rel="stylesheet">
+		<!-- Use Bootstrap -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>		
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+		
+		<script type="text/javascript" src="include/app.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	
+	<body ng-controller="MainCtrl as app">
+  	<div class="container">
+		<div class="header">
+		    <div class="row">
+		      <div class="col-md-6">
+		        <h1 class="custom">Actor Management Interface</h1>
+		      </div>
+		      <div style="margin-top:24px" class="col-md-2 pull-right" ng-show="!loginPage && !adminPage">
+		        <button class="btn btn-primary btn-sm" ng-click="leavePage('/home')">Sign Out</button>
+		      </div>
+		    </div>		
+		</div>
+        <ng-view></ng-view>
+		<div class="leftPanel" ng-show="loginPage">
+			<div class="LeftPanelHeader">Login</div>
+			<div style="color:red" ng-show="unauthorization"> You are not authorized to login.Please contact support</div>
+			<form>
+			  <label for="login.userId" class="display_bold">UserId:</label>
+			  <input id="userId" class="display" type="text" ng-model="login.userId">
+			  <label for="login.userId" class="display_bold">Password:</label>
+			  <input id="password" class="display" type="password" ng-model="login.password">
+			  <div>
+			  <button style="margin-top:5px;margin-left:2px" class="btn btn-primary btn-sm" ng-disabled="!login.userId && !login.password" ng-click="enterPage('/actor')">Login</button>
+			  <a href="" ng-click="forgotPassword();">Forgot Password?</a>
+			  </div>
+			</form>
+			<a href="" ng-click="goToAdmin()">Go to Admin Screen</a>
+		</div>
+		<div class="footer">AngularJS Demo   - Copyright © avaldes.com</div>
+	</div>
+	</body>
+</html>
